@@ -1,0 +1,56 @@
+{
+  "name": "react-boilerplate",
+  "version": "1.0.0",
+  "description": "React / React Router / Material UI / Webpack 4 boilerplate app",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "eslint": "eslint config src",
+    "dev": "webpack-dev-server --mode development --config config/webpack.config.js",
+    "build": "webpack --mode production --config config/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giannisp/react-boilerplate.git"
+  },
+  "author": "IP",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/giannisp/react-boilerplate/issues"
+  },
+  "homepage": "https://github.com/giannisp/react-boilerplate#readme",
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.1",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "html-webpack-plugin": "^3.2.0",
+    "prettier": "^1.19.1",
+    "terser-webpack-plugin": "^2.3.5",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
