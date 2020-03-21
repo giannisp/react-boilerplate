@@ -2,7 +2,10 @@
  * @file Webpack configuration.
  */
 
+/* eslint-disable import/no-extraneous-dependencies */
+
 const path = require('path');
+
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -14,7 +17,14 @@ const appPath = `${rootPath}/src`;
 const distPath = `${rootPath}/dist`;
 const publicPath = `${rootPath}/public`;
 
-const config = {
+/**
+ * Return the base configuration.
+ *
+ * @param {Boolean} isProduction If in production mode.
+ *
+ * @return {Object} The base configuration.
+ */
+const getBaseConfig = isProduction => ({
   entry: {
     app: `${appPath}/index.js`,
   },
@@ -40,39 +50,8 @@ const config = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: `${publicPath}/index.html`,
-    }),
-  ],
   optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
-  },
-};
-
-const applyDevelopmentConfig = () => {
-  config.devtool = 'inline-source-map';
-
-  config.devServer = {
-    contentBase: publicPath,
-    compress: true,
-    historyApiFallback: true,
-    hot: true,
-    port: 3000,
-  };
-};
-
-const applyProductionConfig = () => {
-  config.plugins.push(new CleanWebpackPlugin());
-  config.plugins.push(
-    new CopyWebpackPlugin([
-      { from: publicPath, to: distPath, ignore: ['index.html'] },
-    ]),
-  );
-
-  config.optimization = {
+    minimize: isProduction,
     minimizer: [
       new TerserWebpackPlugin({
         terserOptions: {
@@ -96,30 +75,72 @@ const applyProductionConfig = () => {
         },
       }),
     ],
-  };
+    splitChunks: {
+      chunks: 'all',
+      automaticNameDelimiter: '-',
+    },
+  },
+});
+
+/**
+ * Return the development configuration.
+ *
+ * @return {Object} The development configuration.
+ */
+const getDevelopmentConfig = () => ({
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: publicPath,
+    compress: true,
+    historyApiFallback: true,
+    hot: true,
+    port: 3000,
+  },
+});
+
+/**
+ * Return the configuration plugins.
+ *
+ * @param {String} mode The environment mode.
+ * @param {Boolean} isProduction If in production mode.
+ *
+ * @return {Object[]} The configuration plugins.
+ */
+const getConfigPlugins = (mode, isProduction) => {
+  const plugins = [
+    new HtmlWebpackPlugin({
+      template: `${publicPath}/index.html`,
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(mode),
+      },
+    }),
+  ];
+
+  if (isProduction) {
+    return [
+      ...plugins,
+      new CleanWebpackPlugin(),
+      new CopyWebpackPlugin([
+        { from: publicPath, to: distPath, ignore: ['index.html'] },
+      ]),
+    ];
+  }
+
+  return plugins;
 };
 
 module.exports = (env, argv) => {
-  const isDevelopment = argv.mode === 'development';
-  const isProduction = argv.mode === 'production';
+  const { mode } = argv;
+  const isProduction = mode === 'production';
 
-  config.optimization.minimize = isProduction;
+  const baseConfig = getBaseConfig(isProduction);
+  const devConfig = !isProduction ? getDevelopmentConfig() : {};
 
-  config.plugins.push(
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(argv.mode),
-      },
-    }),
-  );
-
-  if (isDevelopment) {
-    applyDevelopmentConfig();
-  }
-
-  if (isProduction) {
-    applyProductionConfig();
-  }
-
-  return config;
+  return {
+    ...baseConfig,
+    ...devConfig,
+    plugins: getConfigPlugins(mode, isProduction),
+  };
 };
