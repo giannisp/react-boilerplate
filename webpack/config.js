@@ -55,20 +55,14 @@ const getBaseConfig = isProduction => ({
     minimizer: [
       new TerserWebpackPlugin({
         terserOptions: {
-          parse: {
-            ecma: 8,
-          },
           compress: {
-            ecma: 5,
-            warnings: false,
             comparisons: false,
-            inline: 2,
+            warnings: false,
           },
           mangle: {
             safari10: true,
           },
           output: {
-            ecma: 5,
             comments: false,
             ascii_only: true, // eslint-disable-line babel/camelcase
           },
