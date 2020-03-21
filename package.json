@@ -1,7 +1,7 @@
 {
   "name": "react-boilerplate",
   "version": "1.0.0",
-  "description": "React / React Router / Material UI / Webpack 4 boilerplate app",
+  "description": "React / React Router / Webpack 4 boilerplate app",
   "main": "src/index.js",
   "scripts": {
     "test": "jest",
