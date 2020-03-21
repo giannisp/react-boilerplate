@@ -14,7 +14,7 @@
     "url": "git+https://github.com/giannisp/react-boilerplate.git"
   },
   "author": "IP",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/giannisp/react-boilerplate/issues"
   },
