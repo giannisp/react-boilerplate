@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { AppBar, Tabs, Tab } from '@material-ui/core';
 
 const menu = [
@@ -12,6 +12,7 @@ const menu = [
 ];
 
 function Navigation() {
+  const location = useLocation();
   const history = useHistory();
 
   function onTabChange(event, value) {
@@ -20,7 +21,7 @@ function Navigation() {
 
   return (
     <AppBar position="static">
-      <Tabs onChange={onTabChange} aria-label="Menu">
+      <Tabs value={location.pathname} onChange={onTabChange} aria-label="Menu">
         {menu.map(item => (
           <Tab label={item.title} value={item.url} />
         ))}
