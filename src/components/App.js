@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Helmet from 'react-helmet';
 
 import Navigation from './Navigation';
 import About from '../pages/About';
@@ -14,6 +15,8 @@ function App() {
   return (
     <Router>
       <div>
+        <Helmet titleTemplate="%s - React Boilerplate" />
+
         <Navigation />
 
         <Switch>

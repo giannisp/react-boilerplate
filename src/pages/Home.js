@@ -3,9 +3,16 @@
  */
 
 import React from 'react';
+import Helmet from 'react-helmet';
 
 function Home() {
-  return <div>Hello World!</div>;
+  return (
+    <div>
+      <Helmet title="Home" />
+
+      <p>Hello World!</p>
+    </div>
+  );
 }
 
 export default Home;
