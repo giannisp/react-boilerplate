@@ -23,7 +23,7 @@ function Navigation() {
     <AppBar position="static">
       <Tabs value={location.pathname} onChange={onTabChange} aria-label="Menu">
         {menu.map(item => (
-          <Tab label={item.title} value={item.url} />
+          <Tab key={item.url} label={item.title} value={item.url} />
         ))}
       </Tabs>
     </AppBar>
