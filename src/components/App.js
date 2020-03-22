@@ -19,7 +19,7 @@ function App() {
       <Helmet titleTemplate="%s - React Boilerplate" />
       <Navigation />
 
-      <Grid xs={12}>
+      <Grid container>
         <Switch>
           <Route exact path="/about" component={About} />
           <Route exact path="/" component={Home} />
