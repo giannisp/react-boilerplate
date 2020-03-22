@@ -31,7 +31,7 @@ function Navigation() {
         classes={{ indicator: classes.indicator }}
         aria-label="Menu"
       >
-        {menu.map(item => (
+        {menu.map((item) => (
           <Tab key={item.url} label={item.title} value={item.url} />
         ))}
       </Tabs>

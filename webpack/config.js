@@ -24,7 +24,7 @@ const publicPath = `${rootPath}/public`;
  *
  * @return {Object} The base configuration.
  */
-const getBaseConfig = isProduction => ({
+const getBaseConfig = (isProduction) => ({
   entry: {
     app: `${appPath}/index.js`,
   },
