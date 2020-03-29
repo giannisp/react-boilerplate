@@ -12,6 +12,7 @@ This is a pure React client-side app (SPA) boilerplate.
 - React Helmet
 - Material UI 4.x
 - Prettier setup
+- Testing setup with Jest and React Testing Library
 
 ## Install
 
