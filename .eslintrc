@@ -15,6 +15,16 @@
         "ignoreDestructuring": false
       }
     ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "webpack/config.js",
+          "src/utils/test-setup.js",
+          "src/**/*.test.js"
+        ]
+      }
+    ],
     "react/jsx-filename-extension": 0,
     "react/require-default-props": 0
   }
