@@ -14,20 +14,20 @@ const menuItems = [
 
 const useStyles = makeStyles({ indicator: { backgroundColor: 'white' } });
 
+function onTabChange(event, value, history) {
+  history.push(value);
+}
+
 function Navigation() {
   const location = useLocation();
   const history = useHistory();
   const classes = useStyles();
 
-  function onTabChange(event, value) {
-    history.push(value);
-  }
-
   return (
     <AppBar position="static">
       <Tabs
         value={location.pathname}
-        onChange={onTabChange}
+        onChange={(event, value) => onTabChange(event, value, history)}
         classes={{ indicator: classes.indicator }}
         aria-label="Menu"
       >
