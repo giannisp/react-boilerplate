@@ -2,7 +2,6 @@
  * @file Navigation component tests.
  */
 
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import Navigation, { menuItems } from './Navigation';
