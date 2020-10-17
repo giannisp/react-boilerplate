@@ -26,6 +26,7 @@
       }
     ],
     "react/jsx-filename-extension": 0,
-    "react/require-default-props": 0
+    "react/require-default-props": 0,
+    "react/react-in-jsx-scope": "off"
   }
 }
