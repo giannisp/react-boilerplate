@@ -4,7 +4,7 @@ module.exports = {
       '@babel/preset-env',
       { targets: { browsers: ['last 2 versions'] }, modules: false },
     ],
-    '@babel/preset-react',
+    ['@babel/preset-react', { runtime: 'automatic' }],
   ],
   plugins: [
     '@babel/plugin-proposal-class-properties',
@@ -14,7 +14,10 @@ module.exports = {
   ],
   env: {
     test: {
-      presets: ['@babel/preset-env', '@babel/preset-react'],
+      presets: [
+        '@babel/preset-env',
+        ['@babel/preset-react', { runtime: 'automatic' }],
+      ],
     },
   },
 };
